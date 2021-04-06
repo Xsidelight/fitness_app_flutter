@@ -1,16 +1,37 @@
 import 'package:fitness_app_x/data/meals_list.dart';
 import 'package:fitness_app_x/data/models/meal.dart';
-import 'package:fitness_app_x/widgets/home_page_widgets/meals_card_item.dart';
+import 'package:fitness_app_x/widgets/nutrition_page_widgets/meals_card_item.dart';
 import 'package:fitness_app_x/widgets/nutrition_page_widgets/calories_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NutritionPage extends StatelessWidget {
+class NutritionPage extends StatefulWidget {
+  @override
+  _NutritionPageState createState() => _NutritionPageState();
+}
+
+class _NutritionPageState extends State<NutritionPage>
+    with TickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
+  Tween<double> _tween = Tween(begin: 0, end: 0.4232);
+
+  @override
+  void initState() {
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    animation = _tween.animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
+    controller.forward();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final List<Meal> mealsList = dummyMealsList;
-
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -63,7 +84,7 @@ class NutritionPage extends StatelessWidget {
                                 painter: CaloriesPainter(
                                   colorStart: Theme.of(context).primaryColor,
                                   colorEnd: Theme.of(context).primaryColorLight,
-                                  progress: 0.35,
+                                  progress: animation.value,
                                   strokeWidth: 30,
                                 ),
                               ),
@@ -170,7 +191,7 @@ class _CaloriesRowItemState extends State<CaloriesRowItem>
   @override
   void initState() {
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 3))
+        AnimationController(vsync: this, duration: const Duration(seconds: 1))
           ..addListener(() {
             setState(() {});
           });
