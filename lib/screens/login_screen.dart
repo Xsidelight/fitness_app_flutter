@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "Live healthy by exercising and maintain \nyour diet with the method suit you best.",
+                'Live healthy by exercising and maintain \nyour diet with the method suit you best.',
                 style: TextStyle(color: Colors.white),
               ),
               SizedBox(
@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () => Navigator.pushReplacementNamed(
                       context, MainScreen.routeName),
                   child: Text(
-                    "Sign In",
+                    'Sign In',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -61,10 +61,10 @@ class LoginScreen extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: "New to Trainy?",
+                  text: 'New to Trainy?',
                   children: [
                     TextSpan(
-                      text: " Sign up",
+                      text: ' Sign up',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

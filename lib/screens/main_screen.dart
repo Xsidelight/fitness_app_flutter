@@ -6,7 +6,7 @@ import 'bottom_nav_pages/nutrition_page.dart';
 import 'bottom_nav_pages/profile_page.dart';
 
 class MainScreen extends StatefulWidget {
-  static const routeName = "/main_screen";
+  static const routeName = '/main_screen';
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -63,14 +63,14 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.grey,
                 size: 24,
               ),
-              label: "Home"),
+              label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.insert_chart,
                 color: Colors.grey,
                 size: 24,
               ),
-              label: "Activity"),
+              label: 'Activity'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.bakery_dining,
@@ -78,14 +78,14 @@ class _MainScreenState extends State<MainScreen> {
                 size: 24,
 
               ),
-              label: "Nutrition"),
+              label: 'Nutrition'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
                 color: Colors.grey,
                 size: 24,
               ),
-              label: "Profile"),
+              label: 'Profile'),
         ],
       ),
     );

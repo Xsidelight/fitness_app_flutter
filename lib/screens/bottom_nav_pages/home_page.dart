@@ -23,10 +23,10 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hey User!",
+                'Hey User!',
                 style: Theme.of(context).textTheme.headline6,
               ),
-              Text("Wanna burn some calories today?",
+              Text('Wanna burn some calories today?',
                   style: Theme.of(context).textTheme.bodyText2),
               SizedBox(
                 height: 20,
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Progress",
+                            'Progress',
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -68,13 +68,13 @@ class _HomePageState extends State<HomePage> {
                               child: DropdownButton<String?>(
                                 value: dropDownValue,
                                 style: TextStyle(color: Colors.deepPurple),
-                                hint: Text("Select"),
+                                hint: Text('Select'),
                                 icon: Icon(Icons.keyboard_arrow_down,
                                     color: Colors.deepPurple),
                                 items: <String?>[
-                                  "Running",
-                                  "Jumping",
-                                  "Joggling"
+                                  'Running',
+                                  'Jumping',
+                                  'Joggling'
                                 ].map((e) {
                                   return DropdownMenuItem<String?>(
                                     value: e,
@@ -111,19 +111,19 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           RowItem(
-                            name: "Calories",
-                            number: "1.5",
-                            type: "k",
+                            name: 'Calories',
+                            number: '1.5',
+                            type: 'k',
                           ),
                           RowItem(
-                            name: "Distance",
-                            number: "10",
-                            type: "km",
+                            name: 'Distance',
+                            number: '10',
+                            type: 'km',
                           ),
                           RowItem(
-                            name: "Avg Time",
-                            number: "1h15",
-                            type: "m",
+                            name: 'Avg Time',
+                            number: '1h15',
+                            type: 'm',
                           ),
                         ],
                       )
@@ -141,13 +141,13 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Start Planning Meal",
+                        'Start Planning Meal',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.deepPurple),
                       ),
                       Text(
-                        "Balance your daily nutrition to stay healthy.",
+                        'Balance your daily nutrition to stay healthy.',
                         style: TextStyle(color: Colors.deepPurple),
                       ),
                       SizedBox(
@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                         child: TextButton(
                           onPressed: () {},
                           child: Text(
-                            "Sign In",
+                            'Sign In',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -181,10 +181,10 @@ class _HomePageState extends State<HomePage> {
                 height: 30,
               ),
               Text(
-                "Workouts",
+                'Workouts',
                 style: Theme.of(context).textTheme.headline6,
               ),
-              Text("Always stay in shape",
+              Text('Always stay in shape',
                   style: Theme.of(context).textTheme.bodyText1),
               SizedBox(
                 height: 5,
@@ -196,32 +196,32 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     Card(
-                      child: Container(
-                        height: 150,
-                        width: 400,
-                        child: Center(child: Text("Workout List Item")),
-                      ),
                       elevation: 10,
-                    ),
-                    Card(
                       child: Container(
                         height: 150,
                         width: 400,
-                        child: Text("1"),
+                        child: Center(child: Text('Workout List Item')),
                       ),
                     ),
                     Card(
                       child: Container(
                         height: 150,
                         width: 400,
-                        child: Text("1"),
+                        child: Text('1'),
                       ),
                     ),
                     Card(
                       child: Container(
                         height: 150,
                         width: 400,
-                        child: Text("1"),
+                        child: Text('1'),
+                      ),
+                    ),
+                    Card(
+                      child: Container(
+                        height: 150,
+                        width: 400,
+                        child: Text('1'),
                       ),
                     ),
                   ],
@@ -247,32 +247,34 @@ class RowItem extends StatelessWidget {
     return Container(
       height: 60,
       width: 80,
-      child: Column(
-        children: [
-          Text(
-            name!,
-            style: TextStyle(color: Color(0xffBDBDBD)),
-          ),
-          SizedBox(
-            height: 3,
-          ),
-          RichText(
-            text: TextSpan(
-              text: number,
-              style: GoogleFonts.raleway(
-                  fontWeight: FontWeight.bold, fontSize: 30),
-              children: [
-                TextSpan(
-                  text: type,
-                  style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.bold, fontSize: 15),
-                )
-              ],
+      child: LimitedBox(
+        child: Column(
+          children: [
+            Text(
+              name!,
+              style: TextStyle(color: Color(0xffBDBDBD)),
             ),
-            // "$number $type",
-            // style: TextStyle(color: Colors.white),
-          ),
-        ],
+            SizedBox(
+              height: 3,
+            ),
+            RichText(
+              text: TextSpan(
+                text: number,
+                style: GoogleFonts.raleway(
+                    fontWeight: FontWeight.bold, fontSize: 30),
+                children: [
+                  TextSpan(
+                    text: type,
+                    style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.bold, fontSize: 15),
+                  )
+                ],
+              ),
+              // "$number $type",
+              // style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }

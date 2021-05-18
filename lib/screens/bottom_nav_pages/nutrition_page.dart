@@ -1,5 +1,4 @@
 import 'package:fitness_app_x/data/meals_list.dart';
-import 'package:fitness_app_x/data/models/meal.dart';
 import 'package:fitness_app_x/widgets/nutrition_page_widgets/meals_card_item.dart';
 import 'package:fitness_app_x/widgets/nutrition_page_widgets/calories_painter.dart';
 import 'package:flutter/material.dart';
@@ -14,24 +13,43 @@ class _NutritionPageState extends State<NutritionPage>
     with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
-  Tween<double> _tween = Tween(begin: 0, end: 0.4232);
+  late Animation<Offset> offsetAnimation;
+  late AnimationController controllerOffsetAnimation;
+  final Tween<double> _tween = Tween(begin: 0, end: 0.4232);
 
   @override
   void initState() {
+    super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 700));
     animation = _tween.animate(controller)
       ..addListener(() {
         setState(() {});
       });
+    controllerOffsetAnimation = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 400),
+    );
+    offsetAnimation = Tween<Offset>(begin: Offset(0.0, 0.5), end: Offset.zero)
+        .animate(controllerOffsetAnimation)
+          ..addListener(() {
+            setState(() {});
+          });
+    controllerOffsetAnimation.forward();
     controller.forward();
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controllerOffsetAnimation.dispose();
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final List<Meal> mealsList = dummyMealsList;
+    final mealsList = dummyMealsList;
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -40,7 +58,7 @@ class _NutritionPageState extends State<NutritionPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Nutrition",
+                'Nutrition',
                 style: GoogleFonts.raleway(
                     fontWeight: FontWeight.bold, fontSize: 25),
               ),
@@ -62,7 +80,7 @@ class _NutritionPageState extends State<NutritionPage>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Daily Calories Intake",
+                              'Daily Calories Intake',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -98,21 +116,21 @@ class _NutritionPageState extends State<NutritionPage>
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             CaloriesRowItem(
-                              name: "Carb Intake",
-                              number: "1200",
-                              type: "g",
-                              progressValue: 0.8,
+                              name: 'Carb Intake',
+                              number: '1200',
+                              type: 'g',
+                              progressValue: 0.2,
                             ),
                             CaloriesRowItem(
-                              name: "Protein Intake",
-                              number: "77",
-                              type: "g",
+                              name: 'Protein Intake',
+                              number: '77',
+                              type: 'g',
                               progressValue: 0.4,
                             ),
                             CaloriesRowItem(
-                              name: "Fat Intake",
-                              number: "46",
-                              type: "g",
+                              name: 'Fat Intake',
+                              number: '46',
+                              type: 'g',
                               progressValue: 0.25,
                             ),
                           ],
@@ -134,7 +152,7 @@ class _NutritionPageState extends State<NutritionPage>
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "Manage Meal",
+                    'Manage Meal',
                     style: GoogleFonts.raleway(
                       fontSize: 14,
                     ),
@@ -144,23 +162,26 @@ class _NutritionPageState extends State<NutritionPage>
               SizedBox(
                 height: 5,
               ),
-              Container(
-                width: size.width - 50,
-                height: 300,
-                child: ListView.separated(
-                  itemBuilder: (context, index) => MealsCardItem(
-                    mealName: mealsList[index].name,
-                    mealCategory: mealsList[index].category,
-                    carb: mealsList[index].carb,
-                    fat: mealsList[index].fat,
-                    mealServing: mealsList[index].serving,
-                    protein: mealsList[index].protein,
-                    calories: mealsList[index].calories,
-                  ),
-                  itemCount: mealsList.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(
-                    height: 17,
+              SlideTransition(
+                position: offsetAnimation,
+                child: Container(
+                  width: size.width - 50,
+                  height: 300,
+                  child: ListView.separated(
+                    itemBuilder: (context, index) => MealsCardItem(
+                      mealName: mealsList[index].name,
+                      mealCategory: mealsList[index].category,
+                      carb: mealsList[index].carb,
+                      fat: mealsList[index].fat,
+                      mealServing: mealsList[index].serving,
+                      protein: mealsList[index].protein,
+                      calories: mealsList[index].calories,
+                    ),
+                    itemCount: mealsList.length,
+                    separatorBuilder: (BuildContext context, int index) =>
+                        SizedBox(
+                      height: 17,
+                    ),
                   ),
                 ),
               ),

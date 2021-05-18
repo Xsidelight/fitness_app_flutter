@@ -19,13 +19,13 @@ class CaloriesPainter extends CustomPainter {
     final rect = Rect.fromLTWH(30, 5, 200, 200);
     final rectBackground = Rect.fromLTWH(30, 5, 200, 200);
 
-    Paint paintBackground = Paint()
+    var paintBackground = Paint()
       ..color = Color(0xFFE2EDF1)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    Paint paint = Paint()
+    var paint = Paint()
       ..shader = LinearGradient(
         begin: Alignment.bottomCenter,
         end: Alignment.topLeft,
@@ -53,11 +53,11 @@ class CaloriesPainter extends CustomPainter {
 
     // Calories Number and Text
     final textSpanCalories = TextSpan(
-        text: "Calories Left",
+        text: 'Calories Left',
         style: GoogleFonts.raleway(color: Colors.deepPurple, fontSize: 12));
 
     final textSpanCaloriesNum = TextSpan(
-        text: "987",
+        text: '987',
         style: GoogleFonts.raleway(color: Colors.deepPurple, fontSize: 34));
 
     final textPainterCalories = TextPainter(
