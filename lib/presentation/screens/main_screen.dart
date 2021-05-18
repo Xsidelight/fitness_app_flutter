@@ -39,8 +39,12 @@ class _MainScreenState extends State<MainScreen> {
           Padding(
             padding: EdgeInsets.only(right: 20),
             child: IconButton(
-              icon: Icon(
+              icon: _selectedPageIndex == 0 ? Icon(
                 Icons.notifications,
+                color: Colors.grey,
+                size: 32,
+              ) : Icon(
+                Icons.menu,
                 color: Colors.grey,
                 size: 32,
               ),
