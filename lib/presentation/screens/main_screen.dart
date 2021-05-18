@@ -51,39 +51,30 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: _bottomNavPages[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: TextStyle(color: Colors.grey),
-        unselectedLabelStyle: TextStyle(color: Colors.grey),
+        selectedItemColor: Theme.of(context).primaryColor,
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
         type: BottomNavigationBarType.fixed,
+        iconSize: 30,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: Colors.grey,
-                size: 24,
               ),
               label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.insert_chart,
-                color: Colors.grey,
-                size: 24,
               ),
               label: 'Activity'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.bakery_dining,
-                color: Colors.grey,
-                size: 24,
-
               ),
               label: 'Nutrition'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: Colors.grey,
-                size: 24,
               ),
               label: 'Profile'),
         ],

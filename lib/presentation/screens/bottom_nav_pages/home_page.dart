@@ -1,4 +1,4 @@
-import 'package:fitness_app_x/widgets/home_page_widgets/home_page_chart.dart';
+import 'package:fitness_app_x/presentation/widgets/home_page_widgets/home_page_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

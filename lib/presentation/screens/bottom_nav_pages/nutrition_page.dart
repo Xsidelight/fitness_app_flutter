@@ -1,6 +1,6 @@
 import 'package:fitness_app_x/data/meals_list.dart';
-import 'package:fitness_app_x/widgets/nutrition_page_widgets/meals_card_item.dart';
-import 'package:fitness_app_x/widgets/nutrition_page_widgets/calories_painter.dart';
+import 'package:fitness_app_x/presentation/widgets/nutrition_page_widgets/calories_painter.dart';
+import 'package:fitness_app_x/presentation/widgets/nutrition_page_widgets/meals_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -264,6 +264,7 @@ class _CaloriesRowItemState extends State<CaloriesRowItem>
           LinearProgressIndicator(
             minHeight: 6,
             value: controller.value,
+            color: Theme.of(context).primaryColor,
             semanticsLabel: 'Linear progress indicator',
             backgroundColor: Theme.of(context).primaryColorLight,
           ),

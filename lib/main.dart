@@ -1,12 +1,16 @@
-import 'package:fitness_app_x/screens/login_screen.dart';
-import 'package:fitness_app_x/screens/main_screen.dart';
+import 'package:fitness_app_x/presentation/router/app_router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp(appRouter: AppRouter(),));
 }
 
 class MyApp extends StatelessWidget {
+  final AppRouter appRouter;
+
+
+  MyApp({required this.appRouter});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,10 +20,8 @@ class MyApp extends StatelessWidget {
         primaryColorLight: Color(0xffB1CED6),
         accentColor: Color(0xff845EC2),
       ),
-      home: LoginScreen(),
-      routes: {
-        MainScreen.routeName: (ctx) => MainScreen(),
-      },
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: appRouter.onGenerateRoute,
     );
   }
 }

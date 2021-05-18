@@ -1,4 +1,3 @@
-import 'package:fitness_app_x/screens/main_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 width: 300,
                 child: TextButton(
                   onPressed: () => Navigator.pushReplacementNamed(
-                      context, MainScreen.routeName),
+                      context, '/main_screen'),
                   child: Text(
                     'Sign In',
                     style: TextStyle(color: Colors.white),
