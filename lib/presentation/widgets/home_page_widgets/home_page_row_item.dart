@@ -27,7 +27,7 @@ class RowItem extends StatelessWidget {
               text: TextSpan(
                 text: number,
                 style: GoogleFonts.raleway(
-                    fontWeight: FontWeight.bold, fontSize: 30),
+                    fontWeight: FontWeight.bold, fontSize: 25),
                 children: [
                   TextSpan(
                     text: type,

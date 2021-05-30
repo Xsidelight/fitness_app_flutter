@@ -151,10 +151,13 @@ class _NutritionPageState extends State<NutritionPage>
                     style: GoogleFonts.raleway(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    'Manage Meal',
-                    style: GoogleFonts.raleway(
-                      fontSize: 14,
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, '/meals_screen'),
+                    child: Text(
+                      'Manage Meal',
+                      style: GoogleFonts.raleway(
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                 ],
