@@ -2,7 +2,7 @@
 
 Practice fitness app example.
 
-![FitnessApp gif]( https://giphy.com/embed/HMWY4GWqEs8RB3I4dg )
+![FitnessApp gif]( https://media.giphy.com/media/HMWY4GWqEs8RB3I4dg/giphy.gif )
 
 ## Getting Started
 
