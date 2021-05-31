@@ -6,7 +6,6 @@ import 'bottom_nav_pages/nutrition_page.dart';
 import 'bottom_nav_pages/profile_page.dart';
 
 class MainScreen extends StatefulWidget {
-  static const routeName = '/main_screen';
 
   @override
   _MainScreenState createState() => _MainScreenState();

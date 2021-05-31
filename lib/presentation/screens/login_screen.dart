@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 width: 300,
                 child: TextButton(
                   onPressed: () => Navigator.pushReplacementNamed(
-                      context, '/main_screen'),
+                      context, 'main_screen'),
                   child: Text(
                     'Sign In',
                     style: TextStyle(color: Colors.white),

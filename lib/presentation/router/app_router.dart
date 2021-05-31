@@ -7,9 +7,29 @@ class AppRouter {
   Route? onGenerateRoute(RouteSettings settings) {
     if (settings.name == '/') {
       return MaterialPageRoute(builder: (_) => LoginScreen());
-    } else if (settings.name == '/main_screen')  {
-      return MaterialPageRoute(builder: (_) => MainScreen());
-    } else if (settings.name =='/meals_screen') {
+    } else if (settings.name == 'main_screen') {
+      return PageRouteBuilder(
+        transitionDuration: Duration(seconds: 1),
+        pageBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+        ) =>
+            MainScreen(),
+        transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+        ) =>
+            Align(
+          child: SizeTransition(
+            sizeFactor: animation,
+            child: child,
+          ),
+        ),
+      );
+    } else if (settings.name == 'meals_screen') {
       return MaterialPageRoute(builder: (_) => MealsScreen());
     } else {
       return null;

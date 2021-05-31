@@ -152,7 +152,7 @@ class _NutritionPageState extends State<NutritionPage>
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, '/meals_screen'),
+                    onTap: () => Navigator.pushNamed(context, 'meals_screen'),
                     child: Text(
                       'Manage Meal',
                       style: GoogleFonts.raleway(

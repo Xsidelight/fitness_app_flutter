@@ -8,13 +8,44 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   String? dropDownValue;
+  late AnimationController _controller;
+  late Animation _captionAnimation;
+  late Animation<Offset> _homeChartAnimation;
+  late Animation<Offset> _homeScrMiddleCard;
+  late Animation<Offset> _homeScrWorkoutList;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    _captionAnimation = Tween(begin: 0.0, end: 20.0).animate(_controller);
+    _homeChartAnimation =
+        Tween<Offset>(begin: Offset(0.3, 0.0), end: Offset.zero)
+            .animate(_controller);
+    _homeScrMiddleCard =
+        Tween<Offset>(begin: Offset(-0.3, 0.0), end: Offset.zero)
+            .animate(_controller);
+    _homeScrWorkoutList =
+        Tween<Offset>(begin: Offset(0.3, 0.0), end: Offset.zero)
+            .animate(_controller);
+    _controller.forward();
+    _controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -24,156 +55,163 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 'Hey User!',
-                style: Theme.of(context).textTheme.headline6,
+                style: TextStyle(
+                    fontSize: _captionAnimation.value, color: Colors.black),
               ),
               Text('Wanna burn some calories today?',
                   style: Theme.of(context).textTheme.bodyText2),
               SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 280,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(2, 2),
-                          color: Theme.of(context).primaryColor,
-                          blurRadius: 10)
-                    ],
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.blue),
-                    color: Theme.of(context).primaryColor),
-                child: Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Progress',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          Container(
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
+              SlideTransition(
+                position: _homeChartAnimation,
+                child: Container(
+                  height: 280,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(2, 2),
+                            color: Theme.of(context).primaryColor,
+                            blurRadius: 10)
+                      ],
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.blue),
+                      color: Theme.of(context).primaryColor),
+                  child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Progress',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: DropdownButton<String?>(
-                                value: dropDownValue,
-                                style: TextStyle(color: Colors.deepPurple),
-                                hint: Text('Select'),
-                                icon: Icon(Icons.keyboard_arrow_down,
-                                    color: Colors.deepPurple),
-                                items: <String?>[
-                                  'Running',
-                                  'Jumping',
-                                  'Joggling'
-                                ].map((e) {
-                                  return DropdownMenuItem<String?>(
-                                    value: e,
-                                    child: Text(e!),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    dropDownValue = value!;
-                                  });
-                                },
+                            Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 140,
-                        child: Transform.scale(
-                          scale: 0.9,
-                          child: Padding(
-                            padding: EdgeInsets.all(12),
-                            child: CustomPaint(
-                              painter: HomePageChart(),
+                              child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: DropdownButton<String?>(
+                                  value: dropDownValue,
+                                  style: TextStyle(color: Colors.deepPurple),
+                                  hint: Text('Select'),
+                                  icon: Icon(Icons.keyboard_arrow_down,
+                                      color: Colors.deepPurple),
+                                  items: <String?>[
+                                    'Running',
+                                    'Jumping',
+                                    'Joggling'
+                                  ].map((e) {
+                                    return DropdownMenuItem<String?>(
+                                      value: e,
+                                      child: Text(e!),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      dropDownValue = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 140,
+                          child: Transform.scale(
+                            scale: 0.9,
+                            child: Padding(
+                              padding: EdgeInsets.all(12),
+                              child: CustomPaint(
+                                painter: HomePageChart(),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          RowItem(
-                            name: 'Calories',
-                            number: '1.5',
-                            type: 'k',
-                          ),
-                          RowItem(
-                            name: 'Distance',
-                            number: '10',
-                            type: 'km',
-                          ),
-                          RowItem(
-                            name: 'Avg Time',
-                            number: '1h15',
-                            type: 'm',
-                          ),
-                        ],
-                      )
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            RowItem(
+                              name: 'Calories',
+                              number: '1.5',
+                              type: 'k',
+                            ),
+                            RowItem(
+                              name: 'Distance',
+                              number: '10',
+                              type: 'km',
+                            ),
+                            RowItem(
+                              name: 'Avg Time',
+                              number: '1h15',
+                              type: 'm',
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: 30,
               ),
-              Card(
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Start Planning Meal',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple),
-                      ),
-                      Text(
-                        'Balance your daily nutrition to stay healthy.',
-                        style: TextStyle(color: Colors.deepPurple),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                            colors: [
-                              Theme.of(context).primaryColor,
-                              Theme.of(context).primaryColorLight,
-                            ],
+              SlideTransition(
+                position: _homeScrMiddleCard,
+                child: Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Start Planning Meal',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple),
+                        ),
+                        Text(
+                          'Balance your daily nutrition to stay healthy.',
+                          style: TextStyle(color: Colors.deepPurple),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                              colors: [
+                                Theme.of(context).primaryColor,
+                                Theme.of(context).primaryColorLight,
+                              ],
+                            ),
+                          ),
+                          width: 95,
+                          height: 31,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
-                        width: 95,
-                        height: 31,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -182,10 +220,12 @@ class _HomePageState extends State<HomePage> {
               ),
               Text(
                 'Workouts',
-                style: Theme.of(context).textTheme.headline6,
+                style: TextStyle(fontSize: _captionAnimation.value),
               ),
-              Text('Always stay in shape',
-                  style: Theme.of(context).textTheme.bodyText1),
+              Text(
+                'Always stay in shape',
+                style: TextStyle(fontSize: _captionAnimation.value),
+              ),
               SizedBox(
                 height: 5,
               ),
@@ -234,4 +274,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
