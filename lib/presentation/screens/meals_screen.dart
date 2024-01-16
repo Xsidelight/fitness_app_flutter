@@ -1,5 +1,4 @@
 import 'package:fitness_app_x/presentation/widgets/meals_screen_widgets/txt_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MealsScreen extends StatefulWidget {
@@ -12,16 +11,12 @@ class MealsScreen extends StatefulWidget {
 class _MealsScreenState extends State<MealsScreen> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
           'Meals',
-          style: TextStyle(
-              color: Colors.grey.shade800,
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.grey.shade800, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: false,
         elevation: 0,

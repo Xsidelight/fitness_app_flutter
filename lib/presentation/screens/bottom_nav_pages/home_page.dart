@@ -1,7 +1,6 @@
 import 'package:fitness_app_x/presentation/widgets/home_page_widgets/home_page_chart.dart';
 import 'package:fitness_app_x/presentation/widgets/home_page_widgets/home_page_row_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,7 +13,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late Animation _captionAnimation;
   late Animation<Offset> _homeChartAnimation;
   late Animation<Offset> _homeScrMiddleCard;
-  late Animation<Offset> _homeScrWorkoutList;
 
   @override
   void initState() {
@@ -27,9 +25,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             .animate(_controller);
     _homeScrMiddleCard =
         Tween<Offset>(begin: Offset(-0.3, 0.0), end: Offset.zero)
-            .animate(_controller);
-    _homeScrWorkoutList =
-        Tween<Offset>(begin: Offset(0.3, 0.0), end: Offset.zero)
             .animate(_controller);
     _controller.forward();
     _controller.addListener(() {
@@ -59,7 +54,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     fontSize: _captionAnimation.value, color: Colors.black),
               ),
               Text('Wanna burn some calories today?',
-                  style: Theme.of(context).textTheme.bodyText2),
+                  style: Theme.of(context).textTheme.bodyMedium),
               SizedBox(
                 height: 20,
               ),

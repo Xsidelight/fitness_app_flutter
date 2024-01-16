@@ -22,10 +22,8 @@ class _ActivityPageState extends State<ActivityPage> {
             children: [
               Text(
                 'Activity',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff555555)),
+                style:
+                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Color(0xff555555)),
               ),
               SizedBox(
                 height: 20,
@@ -79,9 +77,7 @@ class _ActivityPageState extends State<ActivityPage> {
                           Text(
                             'Progress',
                             style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           Container(
                             height: 30,
@@ -95,13 +91,8 @@ class _ActivityPageState extends State<ActivityPage> {
                                 value: dropDownValue,
                                 style: TextStyle(color: Colors.deepPurple),
                                 hint: Text('Select'),
-                                icon: Icon(Icons.keyboard_arrow_down,
-                                    color: Colors.deepPurple),
-                                items: <String?>[
-                                  'Running',
-                                  'Jumping',
-                                  'Joggling'
-                                ].map((e) {
+                                icon: Icon(Icons.keyboard_arrow_down, color: Colors.deepPurple),
+                                items: <String?>['Running', 'Jumping', 'Joggling'].map((e) {
                                   return DropdownMenuItem<String?>(
                                     value: e,
                                     child: Text(e!),
@@ -162,7 +153,7 @@ class _ActivityPageState extends State<ActivityPage> {
               ),
               Text(
                 'Your Workout',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               LimitedBox(
                 maxHeight: 400,
